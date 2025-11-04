@@ -20,19 +20,28 @@ This will download and run the services defined in `docker-compose.yml`.
 
 You can shut down the containers using Control-C.
 
+### Apple Silicon
+
+If you are running Docker on an Apple Silicon Mac (M1, M2, etc.) you will need to use the following command:
+
+```bash
+$ DOCKER_DEFAULT_PLATFORM=linux/amd64 docker compose up
+```
+
 ## Included Services
 
-| Service   | Name        | URL                                    | Username | Password   | Data Location    |
-|-----------|-------------|----------------------------------------|----------|------------|------------------|
-| GeoServer | `geoserver` | <http://localhost:8080/geoserver/web/> | `gis`    | `password` | `data/geoserver` |
-| MapStore  | `mapstore`  | <http://localhost:8081/mapstore/>      | `admin`  | `admin`    | PostGIS          |
-| PostGIS   | `postgis`   | N/A                                    | `gis`    | `password` | `data/postgis`   |
-| Solr      | `solr`      | <http://localhost:8983/solr/>          | N/A      | N/A        | `data/solr`      |
+| Service   | Name        | URL                                    | Username          | Password   | Data Location    |
+|-----------|-------------|----------------------------------------|-------------------|------------|------------------|
+| GeoServer | `geoserver` | <http://localhost:8080/geoserver/web/> | `gis`             | `password` | `data/geoserver` |
+| MapStore  | `mapstore`  | <http://localhost:8081/mapstore/>      | `admin`           | `admin`    | PostGIS          |
+| pgAdmin4  | `pgadmin`   | <http://localhost:5050/>               | `gis@example.com` | `password` | `data/pgadmin`   |
+| PostGIS   | `postgis`   | N/A                                    | `gis`             | `password` | `data/postgis`   |
+| Solr      | `solr`      | <http://localhost:8983/solr/>          | N/A               | N/A        | `data/solr`      |
 
 Note: Wherever possible a service's data is stored on the host machine so it persists between runs.
 
 
-### GeoServer (geoserver)
+### GeoServer
 
 > [GeoServer](https://geoserver.org) is an open source server for sharing geospatial data.
 
@@ -57,7 +66,7 @@ Demo data is enabled by default to facilitate learning & using the service right
 
 Configuration options for the GeoServer Docker image can be found at <https://github.com/geoserver/docker>.
 
-### MapStore (mapstore)
+### MapStore
 
 > [MapStore](https://docs.mapstore.geosolutionsgroup.com/) is a highly modular Open Source WebGIS framework to create, manage and securely share maps and mashups.
 
@@ -74,11 +83,32 @@ The credentials for logging in as the MapStore admin are:
 
 MapStore's data is stored in the PostGIS database describe below.
 
-### PostGIS (postgis)
+### pgAdmin4
+
+> [pgAdmin](https://www.pgadmin.org) is the most popular and feature rich Open Source administration and development platform for PostgreSQL, the most advanced Open Source database in the world.
+
+Once the service is running you can access pgAdmin at `localhost` on port `5050`.
+
+#### Credentials
+
+The credentials for logging in area:
+
+- Username: `gis@example.com`
+- Password: `password`
+
+####
+
+pgAdmin data is stored in `data/pgadmin`.
+
+#### Configuration
+
+Configuration options for the pgAdmin Docker image can be found at https://www.pgadmin.org/docs/pgadmin4/9.9/container_deployment.html
+
+### PostGIS
 
 > [PostGIS](https://postgis.net) extends the capabilities of the PostgreSQL relational database by adding support for storing, indexing, and querying geospatial data.
 
-Once the service is running you can access PostGIS at `localhost` on port `5432`
+Once the service is running you can access PostGIS at `localhost` on port `5432`.
 
 To connect with [psql](https://www.postgresql.org/docs/current/app-psql.html), use the following:
 
@@ -101,11 +131,11 @@ PostGIS data is stored in `data/postgis`.
 
 Configuration options for the PostGIS Docker image can be found at https://github.com/postgis/docker-postgis
 
-### Solr (solr)
+### Solr
 
 > [Solr](https://solr.apache.org) is the popular, blazing-fast, open source enterprise search platform built on Apache Lucene
 
-Once the service is running you can access Solr at <http://localhost:8983/solr/>
+Once the service is running you can access Solr at <http://localhost:8983/solr/>.
 
 #### Data
 

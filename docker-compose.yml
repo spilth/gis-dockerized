@@ -1,6 +1,6 @@
 services:
   geoserver:
-    image: docker.osgeo.org/geoserver:2.25.3
+    image: docker.osgeo.org/geoserver:2.28.0
     ports:
       - "8080:8080"
     volumes:
@@ -27,8 +27,22 @@ services:
       postgis:
         condition: service_healthy
 
+  pgadmin:
+    image: dpage/pgadmin4:9.9.0
+    ports:
+      - "5050:80"
+    volumes:
+      - ./data/pgadmin:/var/lib/pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "gis@example.com"
+      PGADMIN_DEFAULT_PASSWORD: "password"
+      PGADMIN_DISABLE_POSTFIX: "True"
+    depends_on:
+      postgis:
+        condition: service_healthy
+
   postgis:
-    image: postgis/postgis:16-3.4
+    image: postgis/postgis:17-3.6-alpine
     ports:
       - "5432:5432"
     volumes:

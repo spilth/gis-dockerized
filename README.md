@@ -102,7 +102,7 @@ pgAdmin data is stored in `data/pgadmin`.
 
 #### Configuration
 
-Configuration options for the pgAdmin Docker image can be found at https://www.pgadmin.org/docs/pgadmin4/9.9/container_deployment.html
+Configuration options for the pgAdmin Docker image can be found at https://www.pgadmin.org/docs/pgadmin4/latest/container_deployment.html
 
 ### PostGIS
 
@@ -145,7 +145,7 @@ Solr data is stored in `data/solr`.
 
 The Solr services is configured with a core named `blacklight-core` to be used with an instance of [GeoBlacklight](https://geoblacklight.org)
 
-The `blacklight-core` configuration in the `solr_conf` directory is a copy of the [`solr/conf` directory in the 4.4.0 release of GeoBlacklight](https://github.com/geoblacklight/geoblacklight/tree/v4.4.0/solr/conf).
+The `blacklight-core` configuration in the `solr_conf` directory is a copy of the [`solr/conf` directory in the 5.2.0 release of GeoBlacklight](https://github.com/geoblacklight/geoblacklight/tree/v5.2.0/solr/conf).
 
 ## Additional Notes
 

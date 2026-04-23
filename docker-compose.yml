@@ -1,6 +1,6 @@
 services:
   geoserver:
-    image: docker.osgeo.org/geoserver:2.28.0
+    image: docker.osgeo.org/geoserver:2.28.3
     ports:
       - "8080:8080"
     volumes:
@@ -28,7 +28,7 @@ services:
         condition: service_healthy
 
   pgadmin:
-    image: dpage/pgadmin4:9.9.0
+    image: dpage/pgadmin4:9.14.0
     ports:
       - "5050:80"
     volumes:
@@ -42,11 +42,11 @@ services:
         condition: service_healthy
 
   postgis:
-    image: postgis/postgis:17-3.6-alpine
+    image: postgis/postgis:18-3.6-alpine
     ports:
       - "5432:5432"
     volumes:
-      - ./data/postgis:/var/lib/postgresql/data:Z
+      - ./data/postgis:/var/lib/postgresql:Z
     environment:
       POSTGRES_DB: "gis"
       POSTGRES_USER: "gis"
@@ -58,7 +58,7 @@ services:
       timeout: 20s
 
   solr:
-    image: solr:9.6.1-slim
+    image: solr:9.9.0-slim
     ports:
       - "8983:8983"
     volumes:

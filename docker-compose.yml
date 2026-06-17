@@ -1,6 +1,6 @@
 services:
   geoserver:
-    image: docker.osgeo.org/geoserver:2.28.3
+    image: docker.osgeo.org/geoserver:3.0.0
     ports:
       - "8080:8080"
     volumes:
@@ -28,7 +28,7 @@ services:
         condition: service_healthy
 
   pgadmin:
-    image: dpage/pgadmin4:9.14.0
+    image: dpage/pgadmin4:9.15.0
     ports:
       - "5050:80"
     volumes:
@@ -58,7 +58,7 @@ services:
       timeout: 20s
 
   solr:
-    image: solr:9.9.0-slim
+    image: solr:10.0.0-slim
     ports:
       - "8983:8983"
     volumes:
